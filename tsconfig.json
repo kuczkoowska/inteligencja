@@ -1,27 +1,123 @@
 /* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
 /* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+
+
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@invoice/*": [
+        "app/*"
+      ],
+      "@invoice/animations/*": [
+        "app/animations/*"
+      ],
+      "@invoice/core/*": [
+        "app/core/*"
+      ],
+      "@invoice/const/*": [
+        "app/const/*"
+      ],
+      "@invoice/directives/*": [
+        "app/directives/*"
+      ],
+      "@invoice/guards/*": [
+        "app/guards/*"
+      ],
+      "@invoice/shell/*": [
+        "app/shell/*"
+      ],
+      "@invoice/interceptors/*": [
+        "app/interceptors/*"
+      ],
+      "@invoice/locales/*": [
+        "app/locales/*"
+      ],
+      "@invoice/models/*": [
+        "app/models/*"
+      ],
+      "@invoice/pipes/*": [
+        "app/pipes/*"
+      ],
+      "@invoice/providers/*": [
+        "app/providers/*"
+      ],
+      "@invoice/resolvers/*": [
+        "app/resolvers/*"
+      ],
+      "@invoice/services/*": [
+        "app/services/*"
+      ],
+      "@invoice/stores/*": [
+        "app/stores/*"
+      ],
+      "@invoice/ui/*": [
+        "app/ui/*"
+      ],
+      "@invoice/ui/atoms/*": [
+        "app/ui/atoms/*"
+      ],
+      "@invoice/ui/molecules/*": [
+        "app/ui/molecules/*"
+      ],
+      "@invoice/ui/organisms/*": [
+        "app/ui/organisms/*"
+      ],
+      "@invoice/utils/*": [
+        "app/utils/*"
+      ],
+      "@invoice/modals/*": [
+        "app/modals/*"
+      ],
+      "@invoice/assets/*": [
+        "app/assets/*"
+      ],
+      "@invoice/env/*": [
+        "environments/*"
+      ]
+    },
     "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
+    "sourceMap": true,
+    "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "lib": [
+      "ES2022",
+      "dom"
+    ],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "listEmittedFiles": true,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "diagnostics": true,
+    "extendedDiagnostics": true,
+    "removeComments": true,
+    "useDefineForClassFields": false,
+    "skipLibCheck": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [
+    "server.ts"
+  ]
 }
