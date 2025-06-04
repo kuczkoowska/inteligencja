@@ -1,0 +1,33 @@
+<form
+  class="flex flex-col items-center justify-center w-full h-screen bg-gradient-to-tr from-blue-500 to-white"
+  (drop)="onFileDrop($event)"
+  (dragover)="onDragOver($event)"
+>
+  <label
+    class="flex flex-col items-center justify-center h-72 w-80 cursor-pointer transition-all duration-300 hover:scale-105 hover:border-blue-500 bg-white/10 rounded-2xl border-4 border-blue-200 border-dashed shadow-lg p-10"
+  >
+    <div class="flex flex-col items-center justify-center space-y-2">
+      <svg
+        class="w-24 h-24 text-blue-400 mb-2 animate-bounce drop-shadow-lg"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+        viewBox="0 0 24 24"
+      >
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" fill="none"/>
+        <circle cx="9" cy="10" r="1" fill="currentColor"/>
+        <circle cx="15" cy="10" r="1" fill="currentColor"/>
+        <path d="M9 15c1.5 1 4.5 1 6 0" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="text-2xl font-extrabold text-blue-700 mb-1 drop-shadow">Upload your file</span>
+      <span class="text-base text-blue-600 mb-1">JPG or PDF only, max 10MB</span>
+      <span class="text-xs text-black">Drag & drop or click to select</span>
+    </div>
+    <input
+      type="file"
+      accept=".jpg,.jpeg,.pdf"
+      class="hidden"
+      (change)="onFileSelected($event)"
+    />
+  </label>
+</form>
