@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { OcrService } from '../services/ocr.service';
 
 @Component({
   selector: 'app-data-entry-view',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
   styleUrl: './data-entry-view.component.scss'
 })
 export class DataEntryViewComponent {
+  prediction: string | null = null;
+
+  constructor(private ocrService: OcrService) {}
+
   onFileDrop(event: DragEvent): void {
     event.preventDefault();
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
@@ -19,16 +24,17 @@ export class DataEntryViewComponent {
     event.preventDefault();
   }
 
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      const file = input.files[0];
+  onFileSelected(event: any): void {
+    const file: File = event.target.files[0];
+    if (file) {
       this.handleFile(file);
     }
   }
 
   private handleFile(file: File): void {
-    console.log('Selected file:', file);
-    // add model here??
+    this.ocrService.predict(file).subscribe(result => {
+      this.prediction = result.prediction || result['prediction '] || 'No prediction';
+      console.log('Prediction:', this.prediction);
+    });
   }
 }

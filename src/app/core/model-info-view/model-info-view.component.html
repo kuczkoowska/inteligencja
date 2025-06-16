@@ -1,1 +1,75 @@
-<p>model-info-view works!</p>
+<div class="w-full bg-gradient-to-tr from-orange-500 to-yellow-500 flex flex-col items-center overflow-auto py-8">
+    <div class="max-w-3xl w-full flex flex-col items-center">
+      <h1 class="text-5xl text-orange-900 font-extrabold mb-6 text-center">Model CRNN – Szczegóły</h1>
+      <p class="text-xl text-orange-700 mb-8 text-center">
+        CRNN (Convolutional Recurrent Neural Network) to główny model OCR w tym projekcie, zoptymalizowany do rozpoznawania tekstu na obrazach.
+      </p>
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Wejście modelu</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Obraz w skali szarości, rozmiar <strong>128x32 piksele</strong>, 1 kanał (<code>(32, 128, 1)</code>)</li>
+        </ul>
+      </div>
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Warstwy konwolucyjne (CNN)</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Kilka warstw <code>Conv2D</code>: 64, 128, 256, 512 filtrów</li>
+          <li>Aktywacja <code>ReLU</code> w każdej warstwie</li>
+          <li><code>MaxPooling2D</code> po wybranych warstwach (redukcja wymiarów)</li>
+          <li><code>BatchNormalization</code> dla stabilizacji i przyspieszenia uczenia</li>
+        </ul>
+      </div>
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Przekształcenie do sekwencji</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Po konwolucjach dane są permutowane i przekształcane do sekwencji (model „czyta” obraz od lewej do prawej)</li>
+          <li>Używane warstwy <code>Permute</code> i <code>Reshape</code></li>
+        </ul>
+      </div>
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Warstwy rekurencyjne (RNN)</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Dwie warstwy <code>Bidirectional LSTM</code> (po 256 jednostek każda, dropout 0.25)</li>
+          <li>LSTM analizuje sekwencję cech z obrazu w obu kierunkach (lewo/prawo), co pozwala lepiej rozumieć kontekst liter</li>
+        </ul>
+      </div>
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Wyjście</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Warstwa <code>Dense</code> z aktywacją <code>softmax</code></li>
+          <li>Dla każdej „kolumny” obrazu przewiduje, jaka litera tam występuje</li>
+          <li>Liczba wyjść = liczba znaków w słowniku + 1 (specjalny znak „blank” dla CTC)</li>
+        </ul>
+      </div>
+  
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Trening</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Plik: <code>training.py</code>, klasa <code>OCRTrainer</code></li>
+          <li>Optymalizator Adam (learning_rate=0.001), strata CTC</li>
+          <li>Batch size: <strong>20</strong></li>
+          <li>Liczba epok: <strong>100</strong></li>
+          <li>Limit danych: <strong>10 000</strong> przykładów</li>
+          <li>Callbacki: EarlyStopping, ReduceLROnPlateau, ModelCheckpoint, TensorBoard</li>
+          <li>Automatyczny zapis modelu w formacie <code>.keras</code></li>
+        </ul>
+      </div>
+  
+  
+      <div class="border border-orange-300 rounded-xl p-6 bg-orange-100 shadow-xl w-full mb-6">
+        <h2 class="text-3xl text-orange-800 font-semibold mb-4">Podsumowanie</h2>
+        <ul class="list-disc text-orange-700 space-y-2 pl-6">
+          <li>Model CRNN rozpoznaje tekst łaciński (małe i wielkie litery)</li>
+          <li>Wykorzystuje TensorFlow/Keras, CTC, własny loader danych</li>
+          <li>Trening, ewaluacja i inference są w pełni zautomatyzowane</li>
+        </ul>
+      </div>
+  
+    </div>
+  </div>
