@@ -1,59 +1,46 @@
-# InvoiceReader
+# Dokumentacja aplikacji InvoiceReader
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.7.
+## Opis
 
-## Development server
+**InvoiceReader** to aplikacja webowa służąca do rozpoznawania tekstu (OCR) z obrazów oraz prezentacji szczegółów używanego modelu CRNN. Umożliwia użytkownikowi przesyłanie plików graficznych (JPG ) i uzyskanie predykcji tekstu, a także zapoznanie się z architekturą modelu wykorzystywanego do rozpoznawania.
 
-To start a local development server, run:
+## Funkcjonalności
 
-```bash
-ng serve
-```
+- **Data Entry View**: Przeciągnij i upuść lub wybierz plik do rozpoznania tekstu. Wynik predykcji wyświetlany jest na stronie.
+- **Model Info View**: Szczegółowy opis architektury modelu CRNN, używanego do OCR.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Wymagania
 
-## Code scaffolding
+- Node.js, npm
+- Angular CLI
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Uruchomienie
 
-```bash
-ng generate component component-name
-```
+1. Zainstaluj zależności:
+   ```sh
+   npm install
+   ```
+2. Uruchom aplikację developersko:
+   ```sh
+   ng serve
+   ```
+3. Otwórz w przeglądarce: [http://localhost:4200](http://localhost:4200)
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Widoki aplikacji
 
-```bash
-ng generate --help
-```
+### Data Entry View
 
-## Building
+![data entry view](image.png)
+---
 
-To build the project run:
+### Model Info View
 
-```bash
-ng build
-```
+![model info view](image-1.png)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Struktura projektu
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- `src/app/core/data-entry-view/` – komponent do przesyłania plików i wyświetlania predykcji
+- `src/app/core/model-info-view/` – komponent z opisem modelu CRNN
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
